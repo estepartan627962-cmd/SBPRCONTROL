@@ -284,6 +284,104 @@ def aplicar_estilo_sbpr() -> None:
             box-shadow: 0 0 0 2px rgba(200, 146, 27, 0.18) !important;
         }}
 
+        /* Selects, pills y controles de formularios */
+        [data-baseweb="select"] > div,
+        [data-baseweb="select"] input,
+        [data-baseweb="select"] span,
+        [data-baseweb="select"] div {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        [data-baseweb="select"] svg {{
+            fill: var(--sbpr-azul) !important;
+        }}
+
+        div[data-baseweb="popover"] {{
+            background: transparent !important;
+        }}
+
+        div[data-baseweb="popover"] ul {{
+            background: var(--sbpr-blanco) !important;
+            border: 1px solid rgba(7, 31, 75, 0.16) !important;
+            border-radius: 14px !important;
+            box-shadow: 0 16px 34px rgba(7, 31, 75, 0.16) !important;
+            padding: 0.4rem !important;
+        }}
+
+        div[data-baseweb="popover"] li,
+        div[data-baseweb="popover"] li * {{
+            color: var(--sbpr-azul) !important;
+            background: transparent !important;
+        }}
+
+        div[data-baseweb="popover"] li:hover,
+        div[data-baseweb="popover"] li[aria-selected="true"] {{
+            background: rgba(7, 31, 75, 0.10) !important;
+            border-radius: 10px !important;
+        }}
+
+        div[data-testid="stPills"] {{
+            gap: 0.5rem;
+        }}
+
+        div[data-testid="stPills"] button {{
+            background: var(--sbpr-blanco) !important;
+            color: var(--sbpr-azul) !important;
+            border: 1px solid rgba(7, 31, 75, 0.28) !important;
+            border-radius: 999px !important;
+            padding: 0.6rem 1rem !important;
+            box-shadow: 0 4px 12px rgba(7, 31, 75, 0.08);
+        }}
+
+        div[data-testid="stPills"] button * {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        div[data-testid="stPills"] button[aria-selected="true"] {{
+            background: linear-gradient(135deg, var(--sbpr-azul), var(--sbpr-azul-2)) !important;
+            color: var(--sbpr-blanco) !important;
+            border-color: var(--sbpr-dorado) !important;
+        }}
+
+        div[data-testid="stPills"] button[aria-selected="true"] * {{
+            color: var(--sbpr-blanco) !important;
+        }}
+
+        div[data-testid="stPills"] button:hover {{
+            background: linear-gradient(135deg, var(--sbpr-dorado), var(--sbpr-dorado-claro)) !important;
+            color: var(--sbpr-azul) !important;
+            border-color: var(--sbpr-dorado) !important;
+        }}
+
+        div[data-testid="stPills"] button:hover * {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        [data-testid="stRadio"] label,
+        [data-testid="stRadio"] div[role="radiogroup"] label {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        [data-testid="stSelectSlider"] * {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        [data-testid="stSelectSlider"] div[data-baseweb="slider"] > div > div:first-child {{
+            background: rgba(7, 31, 75, 0.16) !important;
+        }}
+
+        [data-testid="stSelectSlider"] div[data-baseweb="slider"] [role="slider"] {{
+            background: var(--sbpr-azul) !important;
+            border-color: var(--sbpr-dorado) !important;
+            box-shadow: 0 0 0 4px rgba(200, 146, 27, 0.16) !important;
+        }}
+
+        input::placeholder,
+        textarea::placeholder {{
+            color: #8A94A6 !important;
+            opacity: 1 !important;
+        }}
+
         /* Pestañas */
         [data-testid="stTabs"] [role="tablist"] {{
             gap: 0.5rem;
