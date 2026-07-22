@@ -118,7 +118,7 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         p, li, label, span, div {{
-            color: var(--sbpr-texto);
+            color: var(--sbpr-azul);
         }}
 
         [data-testid="stSidebar"] p,
@@ -129,14 +129,27 @@ def aplicar_estilo_sbpr() -> None:
             color: var(--sbpr-blanco) !important;
         }}
 
+        [data-testid="stSidebar"] a {{
+            color: var(--sbpr-blanco) !important;
+            text-decoration-color: rgba(255,255,255,0.7) !important;
+        }}
+
         [data-testid="stCaptionContainer"] p {{
-            color: #6B7280 !important;
-            font-weight: 600;
+            color: var(--sbpr-azul-2) !important;
+            font-weight: 700;
             letter-spacing: 0.04em;
         }}
 
         a {{
             color: var(--sbpr-azul-2);
+        }}
+
+        .stMarkdown, .stMarkdown p, .stMarkdown li, .stText, .stText p {{
+            color: var(--sbpr-azul) !important;
+        }}
+
+        .stAlert p, .stAlert li, .stAlert span {{
+            color: var(--sbpr-azul) !important;
         }}
 
         /* Botones generales */
@@ -160,11 +173,22 @@ def aplicar_estilo_sbpr() -> None:
             color: var(--sbpr-azul) !important;
         }}
 
+        div[data-testid="stButton"] > button:not([kind="primary"]) *,
+        div[data-testid="stLinkButton"] a *,
+        a[data-testid="stBaseLinkButton-secondary"] * {{
+            color: var(--sbpr-azul) !important;
+        }}
+
         div[data-testid="stButton"] > button[kind="primary"],
         a[data-testid="stBaseLinkButton-primary"] {{
             background: linear-gradient(135deg, var(--sbpr-azul), var(--sbpr-azul-2)) !important;
             color: var(--sbpr-blanco) !important;
             border-color: var(--sbpr-azul) !important;
+        }}
+
+        div[data-testid="stButton"] > button[kind="primary"] *,
+        a[data-testid="stBaseLinkButton-primary"] * {{
+            color: var(--sbpr-blanco) !important;
         }}
 
         div[data-testid="stButton"] > button:hover,
@@ -214,6 +238,11 @@ def aplicar_estilo_sbpr() -> None:
             font-weight: 800;
         }}
 
+        [data-testid="stMetricLabel"] *,
+        [data-testid="stMetricDelta"] * {{
+            color: var(--sbpr-azul-2) !important;
+        }}
+
         /* Campos */
         input, textarea, [data-baseweb="select"] > div {{
             background-color: var(--sbpr-blanco) !important;
@@ -234,11 +263,15 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         [data-testid="stTabs"] button[role="tab"] {{
-            background: rgba(255, 255, 255, 0.88) !important;
+            background: rgba(255, 255, 255, 0.96) !important;
             color: var(--sbpr-azul) !important;
             border: 1px solid rgba(7, 31, 75, 0.12) !important;
             border-radius: 12px 12px 0 0 !important;
             padding: 0.6rem 1rem !important;
+        }}
+
+        [data-testid="stTabs"] button[role="tab"] * {{
+            color: var(--sbpr-azul) !important;
         }}
 
         [data-testid="stTabs"] button[aria-selected="true"] {{
@@ -248,13 +281,17 @@ def aplicar_estilo_sbpr() -> None:
             font-weight: 800;
         }}
 
+        [data-testid="stTabs"] button[aria-selected="true"] * {{
+            color: var(--sbpr-blanco) !important;
+        }}
+
         /* Navegación superior */
         .sbpr-nav-label {{
             margin-top: 0.35rem;
             margin-bottom: 0.75rem;
-            color: #6B7280 !important;
+            color: var(--sbpr-azul) !important;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }}
@@ -1476,3 +1513,4 @@ with pie_2:
     st.caption(
         f"Quito · Ecuador · {TELEFONO}"
     )
+    
