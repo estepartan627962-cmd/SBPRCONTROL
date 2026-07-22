@@ -56,6 +56,10 @@ def aplicar_estilo_sbpr() -> None:
             --sbpr-texto: {TEXTO};
         }}
 
+        html, body, [class*="css"] {{
+            color: var(--sbpr-texto);
+        }}
+
         /* Fondo general */
         [data-testid="stAppViewContainer"] {{
             background:
@@ -65,14 +69,14 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         [data-testid="stHeader"] {{
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.90);
             border-bottom: 1px solid rgba(7, 31, 75, 0.08);
             backdrop-filter: blur(10px);
         }}
 
         .block-container {{
             max-width: 1280px;
-            padding-top: 2rem;
+            padding-top: 4.2rem;
             padding-bottom: 3rem;
         }}
 
@@ -102,6 +106,7 @@ def aplicar_estilo_sbpr() -> None:
         h1, h2, h3 {{
             color: var(--sbpr-azul) !important;
             letter-spacing: -0.02em;
+            line-height: 1.15 !important;
         }}
 
         h1 {{
@@ -112,21 +117,44 @@ def aplicar_estilo_sbpr() -> None:
             font-weight: 700 !important;
         }}
 
+        p, li, label, span, div {{
+            color: var(--sbpr-texto);
+        }}
+
+        [data-testid="stSidebar"] p,
+        [data-testid="stSidebar"] li,
+        [data-testid="stSidebar"] label,
+        [data-testid="stSidebar"] span,
+        [data-testid="stSidebar"] div {{
+            color: var(--sbpr-blanco) !important;
+        }}
+
+        [data-testid="stCaptionContainer"] p {{
+            color: #6B7280 !important;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }}
+
         a {{
             color: var(--sbpr-azul-2);
         }}
 
-        /* Botones */
+        /* Botones generales */
         div[data-testid="stButton"] > button,
+        div[data-testid="stLinkButton"] a,
         a[data-testid^="stBaseLinkButton"] {{
-            border-radius: 12px !important;
+            border-radius: 14px !important;
             border: 1px solid var(--sbpr-azul) !important;
             font-weight: 700 !important;
+            min-height: 3rem !important;
+            padding: 0.65rem 1rem !important;
             transition: all 0.20s ease !important;
             box-shadow: 0 5px 14px rgba(7, 31, 75, 0.10);
+            text-decoration: none !important;
         }}
 
         div[data-testid="stButton"] > button:not([kind="primary"]),
+        div[data-testid="stLinkButton"] a,
         a[data-testid="stBaseLinkButton-secondary"] {{
             background: var(--sbpr-blanco) !important;
             color: var(--sbpr-azul) !important;
@@ -140,6 +168,7 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         div[data-testid="stButton"] > button:hover,
+        div[data-testid="stLinkButton"] a:hover,
         a[data-testid^="stBaseLinkButton"]:hover {{
             background: linear-gradient(135deg, var(--sbpr-dorado), var(--sbpr-dorado-claro)) !important;
             color: var(--sbpr-azul) !important;
@@ -148,12 +177,28 @@ def aplicar_estilo_sbpr() -> None:
             box-shadow: 0 10px 22px rgba(200, 146, 27, 0.25);
         }}
 
+        [data-testid="stSidebar"] div[data-testid="stButton"] > button,
+        [data-testid="stSidebar"] div[data-testid="stLinkButton"] a,
+        [data-testid="stSidebar"] a[data-testid^="stBaseLinkButton"] {{
+            background: rgba(255,255,255,0.10) !important;
+            color: var(--sbpr-blanco) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+        }}
+
+        [data-testid="stSidebar"] div[data-testid="stButton"] > button:hover,
+        [data-testid="stSidebar"] div[data-testid="stLinkButton"] a:hover,
+        [data-testid="stSidebar"] a[data-testid^="stBaseLinkButton"]:hover {{
+            background: linear-gradient(135deg, var(--sbpr-dorado), var(--sbpr-dorado-claro)) !important;
+            color: var(--sbpr-azul) !important;
+            border-color: var(--sbpr-dorado) !important;
+        }}
+
         /* Tarjetas, formularios y métricas */
         [data-testid="stVerticalBlockBorderWrapper"],
         [data-testid="stForm"],
         [data-testid="stExpander"],
         [data-testid="stMetric"] {{
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.97);
             border: 1px solid rgba(7, 31, 75, 0.12) !important;
             border-radius: 16px !important;
             box-shadow: 0 10px 28px rgba(7, 31, 75, 0.08);
@@ -165,13 +210,14 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         [data-testid="stMetricValue"] {{
-            color: var(--sbpr-azul);
+            color: var(--sbpr-azul) !important;
             font-weight: 800;
         }}
 
         /* Campos */
         input, textarea, [data-baseweb="select"] > div {{
             background-color: var(--sbpr-blanco) !important;
+            color: var(--sbpr-texto) !important;
             border-color: rgba(7, 31, 75, 0.22) !important;
             border-radius: 10px !important;
         }}
@@ -181,17 +227,40 @@ def aplicar_estilo_sbpr() -> None:
             box-shadow: 0 0 0 2px rgba(200, 146, 27, 0.18) !important;
         }}
 
-        /* Pestañas y navegación */
-        [data-testid="stTabs"] button[aria-selected="true"] {{
+        /* Pestañas */
+        [data-testid="stTabs"] [role="tablist"] {{
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }}
+
+        [data-testid="stTabs"] button[role="tab"] {{
+            background: rgba(255, 255, 255, 0.88) !important;
             color: var(--sbpr-azul) !important;
+            border: 1px solid rgba(7, 31, 75, 0.12) !important;
+            border-radius: 12px 12px 0 0 !important;
+            padding: 0.6rem 1rem !important;
+        }}
+
+        [data-testid="stTabs"] button[aria-selected="true"] {{
+            background: var(--sbpr-azul) !important;
+            color: var(--sbpr-blanco) !important;
             border-bottom-color: var(--sbpr-dorado) !important;
             font-weight: 800;
         }}
 
-        div[data-testid="stPills"] button[aria-selected="true"] {{
-            background: var(--sbpr-azul) !important;
-            color: var(--sbpr-blanco) !important;
-            border-color: var(--sbpr-dorado) !important;
+        /* Navegación superior */
+        .sbpr-nav-label {{
+            margin-top: 0.35rem;
+            margin-bottom: 0.75rem;
+            color: #6B7280 !important;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }}
+
+        .sbpr-nav-spacer {{
+            height: 0.2rem;
         }}
 
         /* Barras de progreso */
@@ -217,8 +286,12 @@ def aplicar_estilo_sbpr() -> None:
             background:
                 radial-gradient(circle at top right, rgba(232, 197, 106, 0.42), transparent 40%),
                 linear-gradient(135deg, var(--sbpr-azul), var(--sbpr-azul-2));
-            color: var(--sbpr-blanco);
+            color: var(--sbpr-blanco) !important;
             box-shadow: 0 14px 30px rgba(7, 31, 75, 0.18);
+        }}
+
+        .sbpr-visual * {{
+            color: var(--sbpr-blanco) !important;
         }}
 
         .sbpr-visual-icon {{
@@ -228,7 +301,6 @@ def aplicar_estilo_sbpr() -> None:
         }}
 
         .sbpr-visual-title {{
-            color: var(--sbpr-blanco);
             font-size: 1.25rem;
             font-weight: 800;
         }}
@@ -241,15 +313,33 @@ def aplicar_estilo_sbpr() -> None:
             background: var(--sbpr-dorado-claro);
         }}
 
+        /* Ocultar elementos de Streamlit que ensucian la vista */
+        [data-testid="stToolbar"], footer {{
+            visibility: hidden;
+            height: 0;
+            position: fixed;
+        }}
+
         /* Ajuste móvil */
-        @media (max-width: 768px) {{
+        @media (max-width: 900px) {{
             .block-container {{
+                padding-top: 4.4rem;
                 padding-left: 1rem;
                 padding-right: 1rem;
             }}
 
             h1 {{
-                font-size: 2rem !important;
+                font-size: 2.1rem !important;
+            }}
+
+            h2 {{
+                font-size: 1.6rem !important;
+            }}
+
+            div[data-testid="stButton"] > button,
+            div[data-testid="stLinkButton"] a {{
+                min-height: 3.1rem !important;
+                white-space: normal !important;
             }}
         }}
         </style>
@@ -428,23 +518,23 @@ def selector_navegacion() -> str:
     ]
 
     actual = st.session_state.pagina
+    st.markdown('<div class="sbpr-nav-label">Navegación principal</div>', unsafe_allow_html=True)
 
-    if hasattr(st, "pills"):
-        seleccion = st.pills(
-            "Navegación principal",
-            opciones,
-            default=actual,
-            selection_mode="single",
-            label_visibility="collapsed",
-        )
-        return seleccion or actual
+    columnas = st.columns(len(opciones))
+    seleccion = actual
 
-    return st.selectbox(
-        "Navegación principal",
-        opciones,
-        index=opciones.index(actual),
-        label_visibility="collapsed",
-    )
+    for columna, opcion in zip(columnas, opciones):
+        with columna:
+            if st.button(
+                opcion,
+                key=f"nav_{opcion}",
+                type="primary" if opcion == actual else "secondary",
+                use_container_width=True,
+            ):
+                seleccion = opcion
+
+    st.markdown('<div class="sbpr-nav-spacer"></div>', unsafe_allow_html=True)
+    return seleccion
 
 
 def mostrar_catalogo(
