@@ -217,6 +217,34 @@ def aplicar_estilo_sbpr() -> None:
             border-color: var(--sbpr-dorado) !important;
         }}
 
+
+        /* Refuerzo de contraste en sidebar */
+        [data-testid="stSidebar"] .stMarkdown,
+        [data-testid="stSidebar"] .stMarkdown p,
+        [data-testid="stSidebar"] .stMarkdown li,
+        [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] label,
+        [data-testid="stSidebar"] strong {{
+            color: var(--sbpr-blanco) !important;
+        }}
+
+        [data-testid="stSidebar"] div[data-testid="stButton"] > button *,
+        [data-testid="stSidebar"] div[data-testid="stLinkButton"] a *,
+        [data-testid="stSidebar"] a[data-testid^="stBaseLinkButton"] * {{
+            color: var(--sbpr-blanco) !important;
+            fill: var(--sbpr-blanco) !important;
+        }}
+
+        [data-testid="stSidebar"] div[data-testid="stButton"] > button:hover *,
+        [data-testid="stSidebar"] div[data-testid="stLinkButton"] a:hover *,
+        [data-testid="stSidebar"] a[data-testid^="stBaseLinkButton"]:hover * {{
+            color: var(--sbpr-azul) !important;
+            fill: var(--sbpr-azul) !important;
+        }}
+
         /* Tarjetas, formularios y métricas */
         [data-testid="stVerticalBlockBorderWrapper"],
         [data-testid="stForm"],
@@ -1513,4 +1541,3 @@ with pie_2:
     st.caption(
         f"Quito · Ecuador · {TELEFONO}"
     )
-    
