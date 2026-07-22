@@ -514,6 +514,118 @@ def aplicar_estilo_sbpr() -> None:
 aplicar_estilo_sbpr()
 
 
+# Refuerzo final de contraste para controles dinámicos de Streamlit/BaseWeb.
+st.markdown(
+    """
+    <style>
+    /* RADIO HORIZONTAL: opciones visibles sobre fondo blanco */
+    [data-testid="stRadio"] [role="radiogroup"] {
+        gap: 0.65rem !important;
+        flex-wrap: wrap !important;
+    }
+
+    [data-testid="stRadio"] [role="radiogroup"] label {
+        background: #FFFFFF !important;
+        border: 1px solid #123A72 !important;
+        border-radius: 999px !important;
+        padding: 0.55rem 0.95rem !important;
+        min-height: 2.8rem !important;
+        box-shadow: 0 4px 12px rgba(7, 31, 75, 0.08) !important;
+    }
+
+    [data-testid="stRadio"] [role="radiogroup"] label,
+    [data-testid="stRadio"] [role="radiogroup"] label * {
+        color: #071F4B !important;
+    }
+
+    [data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {
+        background: linear-gradient(135deg, #071F4B, #123A72) !important;
+        border-color: #C8921B !important;
+    }
+
+    [data-testid="stRadio"] [role="radiogroup"] label:has(input:checked),
+    [data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) * {
+        color: #FFFFFF !important;
+    }
+
+    /* SELECT CERRADO: fondo blanco, texto azul y flecha azul */
+    [data-baseweb="select"] > div {
+        background: #FFFFFF !important;
+        border-color: #123A72 !important;
+        color: #071F4B !important;
+    }
+
+    [data-baseweb="select"] > div > div,
+    [data-baseweb="select"] input,
+    [data-baseweb="select"] span {
+        background: transparent !important;
+        color: #071F4B !important;
+    }
+
+    [data-baseweb="select"] svg {
+        fill: #071F4B !important;
+        color: #071F4B !important;
+    }
+
+    /* MENÚ DESPLEGABLE: el portal se monta fuera del formulario */
+    body div[data-baseweb="popover"],
+    body div[data-baseweb="popover"] > div,
+    body div[data-baseweb="menu"],
+    body ul[role="listbox"],
+    body div[role="listbox"] {
+        background: #FFFFFF !important;
+        color: #071F4B !important;
+        border-color: rgba(7, 31, 75, 0.18) !important;
+    }
+
+    body ul[role="listbox"] {
+        border: 1px solid rgba(7, 31, 75, 0.18) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 16px 36px rgba(7, 31, 75, 0.18) !important;
+        padding: 0.35rem !important;
+    }
+
+    body li[role="option"],
+    body li[role="option"] *,
+    body [role="option"],
+    body [role="option"] * {
+        background: #FFFFFF !important;
+        color: #071F4B !important;
+    }
+
+    body li[role="option"]:hover,
+    body li[role="option"][aria-selected="true"],
+    body [role="option"]:hover,
+    body [role="option"][aria-selected="true"] {
+        background: #EEF3FA !important;
+        color: #071F4B !important;
+        border-radius: 9px !important;
+    }
+
+    body li[role="option"]:hover *,
+    body li[role="option"][aria-selected="true"] *,
+    body [role="option"]:hover *,
+    body [role="option"][aria-selected="true"] * {
+        background: transparent !important;
+        color: #071F4B !important;
+    }
+
+    /* Inputs y placeholders */
+    input, textarea {
+        background: #FFFFFF !important;
+        color: #071F4B !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: #7D899D !important;
+        opacity: 1 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 # ============================================================
 # CATÁLOGO DE SERVICIOS
 # ============================================================
@@ -1403,20 +1515,13 @@ elif pagina == "🧭 Diagnóstico":
     area_inicial = st.session_state.area_preseleccionada
     opciones_area = list(SERVICIOS_POR_AREA)
 
-    if hasattr(st, "pills"):
-        area = st.pills(
-            "Área de interés",
-            opciones_area,
-            default=area_inicial,
-            selection_mode="single",
-        )
-    else:
-        area = st.radio(
-            "Área de interés",
-            opciones_area,
-            index=opciones_area.index(area_inicial),
-            horizontal=True,
-        )
+    area = st.radio(
+        "Área de interés",
+        opciones_area,
+        index=opciones_area.index(area_inicial),
+        horizontal=True,
+        key="area_interes_sbpr",
+    )
 
     area = area or area_inicial
     servicios = SERVICIOS_POR_AREA[area]
